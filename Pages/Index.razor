@@ -1,0 +1,24 @@
+﻿@page "/"
+
+To replicate the many renders open the console so that you can see the messages. Then edit the input, remove focus from the input and wait 4 seconds for the <code>bind:after</code> Asynchronous Task to be done.
+<br />
+<br />
+What we expect is for there to be at most 1 render after the Asynchronous Task is done. What we actually see is that it renders 3 times.
+<br />
+<br />
+
+<input @bind=@_myText @bind:after="AsynchronousTask" />
+
+@code {
+    private string _myText = "Start Value";
+
+    private async Task AsynchronousTask()
+    {
+        await Task.Delay(4000);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("rendered!");
+    }
+}

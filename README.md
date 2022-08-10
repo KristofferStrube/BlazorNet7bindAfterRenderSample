@@ -1,0 +1,1 @@
+# .NET 7 Preview 7 sample of bind:after causing multiple renders when done
